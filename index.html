@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sena Winit - Data Engineer</title>
+    <title>Sena - Data Engineer</title>
+    <!-- Link to Animate on Scroll CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Link to your custom CSS file -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
         <main>
+            <!-- Hero Section -->
             <section class="hero" data-aos="fade-up">
                 <header class="header">
                     <div class="time-location">
@@ -50,6 +53,7 @@
                 </div>
             </section>
 
+            <!-- About Section -->
             <section data-aos="fade-up">
                 <h2 class="section-header">about</h2>
                 <div class="about">
@@ -59,10 +63,10 @@
                     <p>
                         from real-time streaming with kafka and kinesis to orchestrating intricate pipelines with airflow, i enjoy tackling challenges at the intersection of data, software engineering, and business intelligence.
                     </p>
-                    <a href="#" class="read-more">view my resume</a>
                 </div>
             </section>
 
+            <!-- Projects Section -->
             <section data-aos="fade-up">
                 <h2 class="section-header">projects</h2>
                 
@@ -74,159 +78,61 @@
                 </div>
 
                 <div class="projects-container">
+                    <!-- Project Cards -->
                     <div class="project-card" data-aos="fade-up" data-tech="python kafka spark gcp bigquery">
                         <a href="#" class="external-link" title="View Project on GitHub" aria-label="View Real-time E-commerce Analytics Pipeline on GitHub">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                         </a>
-                        <div class="card-title">
-                            <span>Real-time E-commerce Analytics Pipeline</span>
-                        </div>
-                        <div class="metrics">
-                            <span class="metric-badge">50GB/day processed</span>
-                            <span class="metric-badge">sub-100ms latency</span>
-                            <span class="metric-badge">40% cost reduction</span>
-                        </div>
-                        <p class="card-description">
-                            Implemented a scalable, real-time data pipeline using Kafka and Spark Streaming to process user clickstream data for live analytics dashboards.
-                        </p>
-                        <div class="challenge-solution">
-                            <div class="challenge">
-                                <div class="challenge-label">challenge</div>
-                                <div class="challenge-text">Legacy batch processing caused 4-hour delays in critical business metrics.</div>
-                            </div>
-                            <div class="solution">
-                                <div class="solution-label">solution</div>
-                                <div class="solution-text">Used Kafka partitioning and custom Spark aggregations for real-time processing.</div>
-                            </div>
-                        </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">python</span>
-                            <span class="tech-tag">kafka</span>
-                            <span class="tech-tag">spark</span>
-                            <span class="tech-tag">gcp</span>
-                            <span class="tech-tag">bigquery</span>
-                        </div>
+                        <div class="card-title"><span>Real-time E-commerce Analytics Pipeline</span></div>
+                        <div class="metrics"><span class="metric-badge">50GB/day processed</span><span class="metric-badge">sub-100ms latency</span><span class="metric-badge">40% cost reduction</span></div>
+                        <p class="card-description">Implemented a scalable, real-time data pipeline using Kafka and Spark Streaming to process user clickstream data for live analytics dashboards.</p>
+                        <div class="challenge-solution"><div class="challenge"><div class="challenge-label">challenge</div><div class="challenge-text">Legacy batch processing caused 4-hour delays in critical business metrics.</div></div><div class="solution"><div class="solution-label">solution</div><div class="solution-text">Used Kafka partitioning and custom Spark aggregations for real-time processing.</div></div></div>
+                        <div class="tech-tags"><span class="tech-tag">python</span><span class="tech-tag">kafka</span><span class="tech-tag">spark</span><span class="tech-tag">gcp</span><span class="tech-tag">bigquery</span></div>
                     </div>
                     <div class="project-card" data-aos="fade-up" data-aos-delay="100" data-tech="python airflow scikit-learn postgresql">
                         <a href="#" class="external-link" title="View Project on GitHub" aria-label="View Customer Segmentation with ML on GitHub">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                         </a>
-                        <div class="card-title">
-                            <span>Customer Segmentation with ML</span>
-                        </div>
-                        <div class="metrics">
-                            <span class="metric-badge">2M+ customers</span>
-                            <span class="metric-badge">35% conversion lift</span>
-                            <span class="metric-badge">92% accuracy</span>
-                        </div>
-                        <p class="card-description">
-                            Developed a machine learning model for customer segmentation. Built an Airflow pipeline to extract and transform data for a K-Means clustering algorithm.
-                        </p>
-                         <div class="challenge-solution">
-                            <div class="challenge">
-                                <div class="challenge-label">challenge</div>
-                                <div class="challenge-text">Generic marketing campaigns yielded low engagement rates across a diverse customer base.</div>
-                            </div>
-                            <div class="solution">
-                                <div class="solution-label">solution</div>
-                                <div class="solution-text">Engineered 47 behavioral features and deployed ensemble clustering with automated retraining.</div>
-                            </div>
-                        </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">python</span>
-                            <span class="tech-tag">airflow</span>
-                            <span class="tech-tag">scikit-learn</span>
-                            <span class="tech-tag">postgresql</span>
-                        </div>
+                        <div class="card-title"><span>Customer Segmentation with ML</span></div>
+                        <div class="metrics"><span class="metric-badge">2M+ customers</span><span class="metric-badge">35% conversion lift</span><span class="metric-badge">92% accuracy</span></div>
+                        <p class="card-description">Developed a machine learning model for customer segmentation. Built an Airflow pipeline to extract and transform data for a K-Means clustering algorithm.</p>
+                        <div class="challenge-solution"><div class="challenge"><div class="challenge-label">challenge</div><div class="challenge-text">Generic marketing campaigns yielded low engagement rates across a diverse customer base.</div></div><div class="solution"><div class="solution-label">solution</div><div class="solution-text">Engineered 47 behavioral features and deployed ensemble clustering with automated retraining.</div></div></div>
+                        <div class="tech-tags"><span class="tech-tag">python</span><span class="tech-tag">airflow</span><span class="tech-tag">scikit-learn</span><span class="tech-tag">postgresql</span></div>
                     </div>
                     <div class="project-card" data-aos="fade-up" data-aos-delay="200" data-tech="sql snowflake dbt airflow">
                         <a href="#" class="external-link" title="View Project on GitHub" aria-label="View Cloud Data Warehouse Migration on GitHub">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                         </a>
-                        <div class="card-title">
-                            <span>Cloud Data Warehouse Migration</span>
-                        </div>
-                         <div class="metrics">
-                            <span class="metric-badge">15TB migrated</span>
-                            <span class="metric-badge">40% faster queries</span>
-                            <span class="metric-badge">60% cost savings</span>
-                        </div>
-                        <p class="card-description">
-                            Led the migration of a legacy on-premise data warehouse to Snowflake. Developed ELT pipelines using dbt, improving query performance by 40%.
-                        </p>
-                        <div class="challenge-solution">
-                            <div class="challenge">
-                                <div class="challenge-label">challenge</div>
-                                <div class="challenge-text">Legacy Oracle warehouse was hitting performance limits with 8+ hour batch jobs.</div>
-                            </div>
-                            <div class="solution">
-                                <div class="solution-label">solution</div>
-                                <div class="solution-text">Architected incremental ELT patterns with dbt and a zero-downtime migration strategy.</div>
-                            </div>
-                        </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">sql</span>
-                            <span class="tech-tag">snowflake</span>
-                            <span class="tech-tag">dbt</span>
-                            <span class="tech-tag">airflow</span>
-                        </div>
+                        <div class="card-title"><span>Cloud Data Warehouse Migration</span></div>
+                        <div class="metrics"><span class="metric-badge">15TB migrated</span><span class="metric-badge">40% faster queries</span><span class="metric-badge">60% cost savings</span></div>
+                        <p class="card-description">Led the migration of a legacy on-premise data warehouse to Snowflake. Developed ELT pipelines using dbt, improving query performance by 40%.</p>
+                        <div class="challenge-solution"><div class="challenge"><div class="challenge-label">challenge</div><div class="challenge-text">Legacy Oracle warehouse was hitting performance limits with 8+ hour batch jobs.</div></div><div class="solution"><div class="solution-label">solution</div><div class="solution-text">Architected incremental ELT patterns with dbt and a zero-downtime migration strategy.</div></div></div>
+                        <div class="tech-tags"><span class="tech-tag">sql</span><span class="tech-tag">snowflake</span><span class="tech-tag">dbt</span><span class="tech-tag">airflow</span></div>
                     </div>
                 </div>
             </section>
 
+            <!-- Arsenal/Skills Section -->
             <section data-aos="fade-up">
                 <h2 class="section-header">arsenal</h2>
                 <div class="arsenal-grid">
-                    <div class="arsenal-card" data-aos="fade-up">
-                        <div class="card-title">python</div>
-                        <p class="card-description">
-                            My primary language for data engineering, scripting, and automation.
-                        </p>
-                    </div>
-                    <div class="arsenal-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-title">sql</div>
-                        <p class="card-description">
-                            Fluent in writing complex queries for extraction, transformation, and analysis.
-                        </p>
-                    </div>
-                    <div class="arsenal-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card-title">spark</div>
-                        <p class="card-description">
-                            My framework of choice for large-scale distributed data processing.
-                        </p>
-                    </div>
-                    <div class="arsenal-card" data-aos="fade-up" data-aos-delay="0">
-                        <div class="card-title">airflow</div>
-                        <p class="card-description">
-                            Specialized in orchestrating complex data workflows and ETL pipelines.
-                        </p>
-                    </div>
-                    <div class="arsenal-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-title">cloud platforms</div>
-                        <p class="card-description">
-                            Proficient with GCP, AWS, and Azure for building and deploying data solutions.
-                        </p>
-                    </div>
+                    <div class="arsenal-card" data-aos="fade-up"><div class="card-title">python</div><p class="card-description">My primary language for data engineering, scripting, and automation.</p></div>
+                    <div class="arsenal-card" data-aos="fade-up" data-aos-delay="100"><div class="card-title">sql</div><p class="card-description">Fluent in writing complex queries for extraction, transformation, and analysis.</p></div>
+                    <div class="arsenal-card" data-aos="fade-up" data-aos-delay="200"><div class="card-title">spark</div><p class="card-description">My framework of choice for large-scale distributed data processing.</p></div>
+                    <div class="arsenal-card" data-aos="fade-up" data-aos-delay="0"><div class="card-title">airflow</div><p class="card-description">Specialized in orchestrating complex data workflows and ETL pipelines.</p></div>
+                    <div class="arsenal-card" data-aos="fade-up" data-aos-delay="100"><div class="card-title">cloud platforms</div><p class="card-description">Proficient with AWS for building and deploying data solutions.</p></div>
                 </div>
             </section>
 
+            <!-- Contact Section -->
             <section data-aos="fade-up">
                 <h2 class="section-header">contact</h2>
                 <div class="contact">
                     <p>i'm always open to new opportunities and collaborations. drop me a line!</p>
-                    <form id="contact-form" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
+                    <form id="contact-form" class="contact-form" action="https://formspree.io/f/mblkopwr" method="POST">
+                        <div class="form-group"><label for="name">name</label><input type="text" id="name" name="name" required></div>
+                        <div class="form-group"><label for="email">email</label><input type="email" id="email" name="email" required></div>
+                        <div class="form-group"><label for="message">message</label><textarea id="message" name="message" required></textarea></div>
                         <button type="submit" class="submit-btn">send message</button>
                         <div id="form-status"></div>
                     </form>
@@ -239,7 +145,9 @@
         </footer>
     </div>
 
+    <!-- Link to Animate on Scroll JavaScript -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Link to your custom JavaScript file -->
     <script src="js/script.js"></script>
 </body>
 </html>

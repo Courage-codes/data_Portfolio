@@ -38,9 +38,7 @@ function runTypewriter() {
     const sequence = [
         { action: 'type', text: 'Sena', speed: 100, pause: 2000 },
         { action: 'delete', count: 4, speed: 50, pause: 500 },
-        { action: 'type', text: 'data analyst', speed: 100, pause: 2000 },
-        { action: 'delete', count: 7, speed: 50, pause: 500 }, // Deletes 'analyst'
-        { action: 'type', text: 'engineer', speed: 100, pause: 3000 },
+        { action: 'type', text: 'Data engineer', speed: 100, pause: 3000 },
         { action: 'delete', count: 13, speed: 50, pause: 500 } // Deletes 'data engineer'
     ];
     let sequenceIndex = 0;
@@ -121,6 +119,7 @@ function setupStatsAnimation() {
                 animateValue(document.getElementById('stat1'), 0, 1.5, 2000, 'TB+', 1);
                 animateValue(document.getElementById('stat2'), 0, 40, 2000, '%');
                 animateValue(document.getElementById('stat4'), 0, 95, 2000, '%', 1);
+                observer.unobserve(statsSection); // Animate only once
             }
         });
     }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
@@ -158,36 +157,62 @@ function setupProjectFilters() {
 }
 
 /**
- * Sets up the contact form submission logic.
+ * Sets up the contact form submission logic using Fetch API for AJAX.
  */
 function setupContactForm() {
     const form = document.getElementById('contact-form');
-    const statusDiv = document.getElementById('form-status');
-    
     if (!form) return;
-    
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent default form submission
-        statusDiv.textContent = 'sending...';
-        
-        // Simulate a network request for demonstration
-        setTimeout(() => {
-            status.textContent = 'message sent! i will be in touch soon.';
-            form.reset();
-            // Clear the status message after a few seconds
-            setTimeout(() => statusDiv.textContent = '', 3000);
-        }, 1000);
-    });
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        const status = document.getElementById('form-status');
+        const data = new FormData(event.target);
+
+        status.textContent = 'sending...';
+        status.style.color = 'var(--text-color-secondary)';
+
+        try {
+            const response = await fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                status.textContent = "message sent! i'll be in touch soon.";
+                status.style.color = 'var(--primary-color)';
+                form.reset();
+                setTimeout(() => {
+                    status.textContent = '';
+                }, 4000);
+            } else {
+                const responseData = await response.json();
+                if (Object.hasOwn(responseData, 'errors')) {
+                    status.textContent = responseData["errors"].map(error => error["message"]).join(", ");
+                } else {
+                    status.textContent = "oops! there was a problem submitting your form";
+                }
+                status.style.color = '#ff4d4d'; // An error color
+            }
+        } catch (error) {
+            status.textContent = "oops! there was a problem submitting your form";
+            status.style.color = '#ff4d4d'; // An error color
+        }
+    }
+
+    form.addEventListener("submit", handleSubmit);
 }
 
 // --- SCRIPT EXECUTION ---
 
-// Run all setup functions when the window has finished loading.
-window.onload = function() {
+// Run all setup functions when the DOM is fully loaded.
+document.addEventListener('DOMContentLoaded', function() {
     updateTime();
     setInterval(updateTime, 60000); // Update the time every minute
     runTypewriter();
     setupStatsAnimation();
     setupProjectFilters();
     setupContactForm();
-};
+});
