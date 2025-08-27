@@ -9,7 +9,9 @@
     "client": "cd client && npm start",
     "build": "cd client && npm run build",
     "start": "node server/index.js",
-    "install-all": "npm install && cd client && npm install"
+    "install-all": "npm install && cd client && npm install",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d client/build"
   },
   "keywords": ["portfolio", "react", "nodejs", "fullstack"],
   "author": "Your Name",
@@ -23,6 +25,7 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.2",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "gh-pages": "^6.1.0"
   }
 }
