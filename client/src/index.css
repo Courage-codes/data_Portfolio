@@ -1,0 +1,266 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  color: #c9d1d9;
+  background: #000000;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Selection styling */
+::selection {
+  background: #2563eb;
+  color: white;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Button focus styles */
+button:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Link focus styles */
+a:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Input focus styles */
+input:focus,
+textarea:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Remove text decoration from links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Button reset */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Input reset */
+input, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Remove default fieldset styles */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Remove default legend styles */
+legend {
+  padding: 0;
+}
+
+/* Ensure proper box sizing for all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Improve text rendering */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+}
+
+/* Ensure proper spacing for headings */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+/* Ensure proper spacing for paragraphs */
+p {
+  margin: 0;
+}
+
+/* Ensure proper spacing for lists */
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for blockquotes */
+blockquote {
+  margin: 0;
+}
+
+/* Ensure proper spacing for figures */
+figure {
+  margin: 0;
+}
+
+/* Ensure proper spacing for forms */
+form {
+  margin: 0;
+}
+
+/* Ensure proper spacing for tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Ensure proper spacing for fieldset */
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for legend */
+legend {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for input */
+input {
+  margin: 0;
+}
+
+/* Ensure proper spacing for textarea */
+textarea {
+  margin: 0;
+}
+
+/* Ensure proper spacing for select */
+select {
+  margin: 0;
+}
+
+/* Ensure proper spacing for button */
+button {
+  margin: 0;
+}
+
+/* Ensure proper spacing for iframe */
+iframe {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for embed */
+embed {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for object */
+object {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for video */
+video {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for audio */
+audio {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for canvas */
+canvas {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for svg */
+svg {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for img */
+img {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for map */
+map {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper spacing for area */
+area {
+  margin: 0;
+  padding: 0;
+}
