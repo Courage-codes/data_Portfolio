@@ -101,16 +101,7 @@ const AboutContainer = styled.div`
   position: relative;
 `;
 
-const ReadMoreLink = styled.a`
-  color: #ff8c00;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 1rem;
-  
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+
 
 const AboutText = styled.p`
   margin: 0 0 1rem 0;
