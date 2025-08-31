@@ -234,14 +234,4 @@ If you have any questions or need help:
 - Contact: contact@example.com
 - Documentation: Check the component files for implementation details
 
-## Acknowledgments
-
-- **React** team for the amazing framework
-- **Styled Components** for CSS-in-JS solution
-- **Framer Motion** for smooth animations
-- **React Icons** for the icon library
-- **Express.js** for the backend framework
-
 ---
-
-Built with ❤️ by a passionate developer
