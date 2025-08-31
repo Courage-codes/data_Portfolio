@@ -226,12 +226,6 @@ Customize the design by modifying the styled components:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Support
 
-If you have any questions or need help:
-
-- Create an issue in the repository
-- Contact: contact@example.com
-- Documentation: Check the component files for implementation details
 
 ---
