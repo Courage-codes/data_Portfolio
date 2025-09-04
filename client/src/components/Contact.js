@@ -171,25 +171,7 @@ const SubmitButton = styled(motion.button)`
   }
 `;
 
-const SuccessMessage = styled(motion.div)`
-  background: #dcfce7;
-  color: #166534;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-  margin-top: 1rem;
-  border: 1px solid #bbf7d0;
-`;
-
-const ErrorMessage = styled(motion.div)`
-  background: #fee2e2;
-  color: #991b1b;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-  margin-top: 1rem;
-  border: 1px solid #fecaca;
-`;
+// Removed Success/Error messages for pure HTML submit path
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -199,9 +181,7 @@ const Contact = () => {
     subject: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  // No JS submit state needed for native Formspree POST
 
   const handleChange = (e) => {
     setFormData({
@@ -338,32 +318,12 @@ const Contact = () => {
 
           <SubmitButton
             type="submit"
-            disabled={isSubmitting}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             <FaPaperPlane size={16} />
-            {isSubmitting ? 'Sending...' : 'Send Message'}
+            Send Message
           </SubmitButton>
-
-          {showSuccess && (
-            <SuccessMessage
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              Thank you! Your message has been sent successfully.
-            </SuccessMessage>
-          )}
-          {errorMessage && (
-            <ErrorMessage
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              {errorMessage}
-            </ErrorMessage>
-          )}
         </ContactForm>
       </ContactContainer>
     </ContactSection>
