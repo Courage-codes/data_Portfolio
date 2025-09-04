@@ -181,33 +181,33 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution with React frontend, Node.js backend, and MongoDB database. Features include user authentication, product management, and payment integration.',
+      title: 'Lakehouse Architecture (E‑Commerce)',
+      description: 'End-to-end medallion lakehouse for e-commerce transactions (Bronze/Silver/Gold) with batch + streaming ingestion, governance, and BI-ready models.',
       image: <FaGlobe />,
-      category: 'web',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      github: 'https://github.com',
-      live: 'https://example.com'
+      category: 'backend',
+      technologies: ['AWS S3', 'Apache Spark', 'Delta Lake', 'Airflow', 'Glue', 'Athena'],
+      github: 'https://github.com/Courage-codes/Lakehouse_Architecture',
+      live: 'https://github.com/Courage-codes/Lakehouse_Architecture'
     },
     {
       id: 2,
-      title: 'Task Management App',
-      description: 'A collaborative task management application built with React and Firebase. Real-time updates, user collaboration, and responsive design.',
-      image: <FaMobile />,
-      category: 'mobile',
-      technologies: ['React', 'Firebase', 'Material-UI'],
-      github: 'https://github.com',
-      live: 'https://example.com'
+      title: 'Ride‑Hailing Data Ingestion (Bolt, Kinesis)',
+      description: 'Serverless real-time ingestion for a ride-hailing platform (Bolt). Kinesis → Lambda → DynamoDB with event validation, trip matching, KPIs, and observability.',
+      image: <FaCode />,
+      category: 'backend',
+      technologies: ['AWS Kinesis', 'AWS Lambda', 'DynamoDB', 'S3', 'CloudWatch'],
+      github: 'https://github.com/Courage-codes/BoLT_RiDe_daTa_InGesTiOn',
+      live: 'https://github.com/Courage-codes/BoLT_RiDe_daTa_InGesTiOn'
     },
     {
       id: 3,
-      title: 'API Gateway Service',
-      description: 'A microservices API gateway built with Node.js and Express. Handles authentication, rate limiting, and request routing.',
+      title: 'Event-Driven Pipeline (ECS)',
+      description: 'Near real-time event processing on AWS using ECS, Kinesis, and Lambda with idempotent consumers and autoscaling.',
       image: <FaCode />,
       category: 'backend',
-      technologies: ['Node.js', 'Express', 'Redis', 'JWT'],
-      github: 'https://github.com',
-      live: 'https://example.com'
+      technologies: ['AWS ECS', 'Kinesis', 'Lambda', 'CloudWatch'],
+      github: 'https://github.com/Courage-codes/EvENT_dRiveN_PiPeLiNe_wiTh_ECS',
+      live: 'https://github.com/Courage-codes/EvENT_dRiveN_PiPeLiNe_wiTh_ECS'
     },
     {
       id: 4,
@@ -231,13 +231,13 @@ const Projects = () => {
     },
     {
       id: 6,
-      title: 'Blog CMS',
-      description: 'A content management system for blogs with admin panel, user management, and SEO optimization features.',
+      title: 'Airflow + AWS Glue ELT',
+      description: 'Orchestrated ELT: Airflow DAGs trigger Glue jobs to transform and load curated datasets with schema evolution.',
       image: <FaCode />,
       category: 'backend',
-      technologies: ['Node.js', 'Express', 'PostgreSQL', 'JWT'],
-      github: 'https://github.com',
-      live: 'https://example.com'
+      technologies: ['Airflow', 'AWS Glue', 'S3', 'Athena'],
+      github: 'https://github.com/Courage-codes/DATA_PIPELINE_WITH_AIRFLOW_-_AWS_GLUE',
+      live: 'https://github.com/Courage-codes/DATA_PIPELINE_WITH_AIRFLOW_-_AWS_GLUE'
     }
   ];
 

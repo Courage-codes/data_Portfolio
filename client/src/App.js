@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Hero from './components/Hero';
+import Contact from './components/Contact';
 
 const AppContainer = styled.div`
   font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
@@ -14,6 +15,7 @@ function App() {
   return (
     <AppContainer>
       <Hero />
+      <Contact />
     </AppContainer>
   );
 }

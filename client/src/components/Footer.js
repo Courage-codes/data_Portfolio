@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
   background: #1e293b;
@@ -166,7 +166,7 @@ const Footer = () => {
             <FaGithub size={20} />
           </SocialLink>
           <SocialLink
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/courage-sena-logotse-6b22a1278"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
@@ -174,15 +174,7 @@ const Footer = () => {
           >
             <FaLinkedin size={20} />
           </SocialLink>
-          <SocialLink
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <FaTwitter size={20} />
-          </SocialLink>
+          
           <SocialLink
             href="mailto:contact@example.com"
             whileHover={{ scale: 1.1 }}

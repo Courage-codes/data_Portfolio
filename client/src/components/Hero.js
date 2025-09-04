@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaGithub, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -58,6 +58,21 @@ const Name = styled(motion.h1)`
   
   @media (max-width: 768px) {
     font-size: 2.5rem;
+  }
+`;
+
+const Typewriter = styled.span`
+  position: relative;
+  &::after {
+    content: '_';
+    color: #ff8c00;
+    animation: blink 1s infinite;
+    margin-left: 4px;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
   }
 `;
 
@@ -257,6 +272,7 @@ const ContactText = styled.p`
 
 const Hero = () => {
   const [currentTime, setCurrentTime] = useState('');
+  const [typewriterText, setTypewriterText] = useState('');
 
   useEffect(() => {
     const updateTime = () => {
@@ -278,6 +294,38 @@ const Hero = () => {
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
+  useEffect(() => {
+    const words = ['sena', 'data analyst', 'data engineer'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let timeoutId;
+
+    const tick = () => {
+      const currentWord = words[wordIndex];
+      if (!isDeleting) {
+        setTypewriterText(currentWord.slice(0, charIndex + 1));
+        charIndex++;
+        if (charIndex === currentWord.length) {
+          isDeleting = true;
+          timeoutId = setTimeout(tick, 1200);
+          return;
+        }
+      } else {
+        setTypewriterText(currentWord.slice(0, charIndex - 1));
+        charIndex--;
+        if (charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      }
+      timeoutId = setTimeout(tick, isDeleting ? 60 : 100);
+    };
+
+    tick();
+    return () => timeoutId && clearTimeout(timeoutId);
+  }, []);
+
   return (
     <HeroSection>
       <Container>
@@ -287,13 +335,13 @@ const Hero = () => {
             {currentTime} | ghana (gmt+0)
           </div>
           <SocialIcons>
-            <SocialLink href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <SocialLink href="https://github.com/Courage-codes" target="_blank" rel="noopener noreferrer">
               <FaGithub size={20} />
             </SocialLink>
-            <SocialLink href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <FaTwitter size={20} />
+            <SocialLink href="https://www.linkedin.com/in/courage-sena-logotse-6b22a1278" target="_blank" rel="noopener noreferrer">
+              <FaLinkedin size={20} />
             </SocialLink>
-            <SocialLink href="mailto:winit@datatech.com">
+            <SocialLink href="#contact" onClick={(e) => { e.preventDefault(); const el = document.getElementById('contact'); if (el) { el.scrollIntoView({ behavior: 'smooth' }); } }}>
               <FaEnvelope size={20} />
             </SocialLink>
           </SocialIcons>
@@ -304,7 +352,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          sena.
+          <Typewriter>{typewriterText}</Typewriter>
         </Name>
 
         <Description
@@ -350,8 +398,8 @@ const Hero = () => {
           <EmploymentItem>
             <EmploymentHeader>
               <div>
-                <CompanyName>datatech</CompanyName>
-                <JobTitle>senior data engineer • 2023 - present</JobTitle>
+                <CompanyName>Amalitech</CompanyName>
+                <JobTitle>data engineer • 2025 - present</JobTitle>
               </div>
               <ExternalLink href="https://datatech.com" target="_blank" rel="noopener noreferrer">
                 ↗
@@ -371,15 +419,15 @@ const Hero = () => {
           <EmploymentItem>
             <EmploymentHeader>
               <div>
-                <CompanyName>bigdata</CompanyName>
-                <JobTitle>data engineer • 2021 - 2023</JobTitle>
+                <CompanyName>NiPMA</CompanyName>
+                <JobTitle>data analyst • 2023 - 2024</JobTitle>
               </div>
               <ExternalLink href="https://bigdata.io" target="_blank" rel="noopener noreferrer">
                 ↗
               </ExternalLink>
             </EmploymentHeader>
             <EmploymentDescription>
-              developed etl pipelines and data transformation workflows. implemented data quality monitoring and automated testing for critical business metrics and reporting systems.
+              Conducted a comprehensive analysis of 50,000+ municipal records using Python (pandas, numpy) and SQL to identify data-driven insights supporting policy decisions across Health, Education, and Infrastructure departments. Redesigned data collection methods.
             </EmploymentDescription>
             <TechTags>
               <TechTag>python</TechTag>
@@ -399,53 +447,57 @@ const Hero = () => {
           
           <ProjectItem>
             <ProjectHeader>
-              <ProjectName>streamflow</ProjectName>
-              <ExternalLink href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <ProjectName>Lakehouse Architecture (E‑Commerce)</ProjectName>
+              <ExternalLink href="https://github.com/Courage-codes/Lakehouse_Architecture" target="_blank" rel="noopener noreferrer">
                 ↗
               </ExternalLink>
             </ProjectHeader>
             <EmploymentDescription>
-              real-time data streaming platform built with kafka and spark. processes millions of events per second with sub-second latency for analytics and machine learning.
+              end-to-end medallion lakehouse (bronze/silver/gold) for e-commerce transactions with batch and streaming ingestion, governance, and bi-ready models.
             </EmploymentDescription>
             <TechTags>
-              <TechTag>python</TechTag>
-              <TechTag>kafka</TechTag>
+              <TechTag>aws s3</TechTag>
               <TechTag>spark</TechTag>
-            </TechTags>
-          </ProjectItem>
-
-          <ProjectItem>
-            <ProjectHeader>
-              <ProjectName>datalake</ProjectName>
-              <ExternalLink href="https://github.com" target="_blank" rel="noopener noreferrer">
-                ↗
-              </ExternalLink>
-            </ProjectHeader>
-            <EmploymentDescription>
-              scalable data lake architecture on aws s3 with automated etl pipelines. handles petabytes of structured and unstructured data with delta lake format.
-            </EmploymentDescription>
-            <TechTags>
-              <TechTag>python</TechTag>
-              <TechTag>aws</TechTag>
-              <TechTag>delta</TechTag>
-              <TechTag>spark</TechTag>
-            </TechTags>
-          </ProjectItem>
-
-          <ProjectItem>
-            <ProjectHeader>
-              <ProjectName>metricflow</ProjectName>
-              <ExternalLink href="https://github.com" target="_blank" rel="noopener noreferrer">
-                ↗
-              </ExternalLink>
-            </ProjectHeader>
-            <EmploymentDescription>
-              automated data quality monitoring and alerting system. tracks data freshness, completeness, and accuracy across hundreds of datasets and pipelines.
-            </EmploymentDescription>
-            <TechTags>
-              <TechTag>python</TechTag>
+              <TechTag>delta lake</TechTag>
               <TechTag>airflow</TechTag>
-              <TechTag>grafana</TechTag>
+              <TechTag>glue</TechTag>
+            </TechTags>
+          </ProjectItem>
+
+          <ProjectItem>
+            <ProjectHeader>
+              <ProjectName>Ride‑Hailing Data Ingestion (Bolt, Kinesis)</ProjectName>
+              <ExternalLink href="https://github.com/Courage-codes/BoLT_RiDe_daTa_InGesTiOn" target="_blank" rel="noopener noreferrer">
+                ↗
+              </ExternalLink>
+            </ProjectHeader>
+            <EmploymentDescription>
+              real-time, serverless ingestion for a ride‑hailing platform (bolt): kinesis → lambda → dynamodb with event validation, trip matching, kpi aggregation, and observability.
+            </EmploymentDescription>
+            <TechTags>
+              <TechTag>kinesis</TechTag>
+              <TechTag>lambda</TechTag>
+              <TechTag>dynamodb</TechTag>
+              <TechTag>s3</TechTag>
+              <TechTag>cloudwatch</TechTag>
+            </TechTags>
+          </ProjectItem>
+
+          <ProjectItem>
+            <ProjectHeader>
+              <ProjectName>Airflow + AWS Glue ELT</ProjectName>
+              <ExternalLink href="https://github.com/Courage-codes/DATA_PIPELINE_WITH_AIRFLOW_-_AWS_GLUE" target="_blank" rel="noopener noreferrer">
+                ↗
+              </ExternalLink>
+            </ProjectHeader>
+            <EmploymentDescription>
+              airflow orchestrates glue jobs to transform raw data into curated datasets with schema evolution and backfills.
+            </EmploymentDescription>
+            <TechTags>
+              <TechTag>airflow</TechTag>
+              <TechTag>aws glue</TechTag>
+              <TechTag>athena</TechTag>
+              <TechTag>s3</TechTag>
             </TechTags>
           </ProjectItem>
         </Section>

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 
 const ContactSection = styled.section`
   padding: 6rem 2rem;
-  background: white;
+  background: #000000;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  color: #c9d1d9;
 `;
 
 const ContactContainer = styled.div`
@@ -27,15 +28,16 @@ const ContactContainer = styled.div`
 const ContactInfo = styled.div``;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #ff8c00;
   margin-bottom: 1rem;
+  &::before { content: '# '; }
 `;
 
 const SectionSubtitle = styled(motion.p)`
-  font-size: 1.2rem;
-  color: #64748b;
+  font-size: 1rem;
+  color: #7d8590;
   margin-bottom: 3rem;
   line-height: 1.6;
 `;
@@ -46,45 +48,46 @@ const ContactItem = styled(motion.div)`
   gap: 1rem;
   margin-bottom: 2rem;
   padding: 1.5rem;
-  background: #f8fafc;
-  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
   transition: all 0.3s ease;
 
   &:hover {
-    background: #e0e7ff;
+    border-color: #ff8c00;
     transform: translateX(10px);
   }
 `;
 
 const ContactIcon = styled.div`
-  width: 50px;
-  height: 50px;
-  background: #2563eb;
+  width: 40px;
+  height: 40px;
+  background: #ff8c00;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 1.2rem;
+  color: #000000;
+  font-size: 1.1rem;
 `;
 
 const ContactDetails = styled.div``;
 
 const ContactLabel = styled.div`
   font-weight: 600;
-  color: #374151;
+  color: #c9d1d9;
   margin-bottom: 0.25rem;
 `;
 
 const ContactValue = styled.div`
-  color: #64748b;
+  color: #7d8590;
 `;
 
 const ContactForm = styled(motion.form)`
-  background: #f8fafc;
+  background: rgba(0, 0, 0, 0.2);
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 `;
 
 const FormGroup = styled.div`
@@ -101,26 +104,30 @@ const FormLabel = styled.label`
 const FormInput = styled.input`
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
+  background: rgba(16,16,16,0.8);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #c9d1d9;
+  border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
 
   &:focus {
     outline: none;
-    border-color: #2563eb;
+    border-color: #ff8c00;
   }
 
   &::placeholder {
-    color: #9ca3af;
+    color: #7d8590;
   }
 `;
 
 const FormTextarea = styled.textarea`
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
+  background: rgba(16,16,16,0.8);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #c9d1d9;
+  border-radius: 6px;
   font-size: 1rem;
   min-height: 120px;
   resize: vertical;
@@ -128,21 +135,21 @@ const FormTextarea = styled.textarea`
 
   &:focus {
     outline: none;
-    border-color: #2563eb;
+    border-color: #ff8c00;
   }
 
   &::placeholder {
-    color: #9ca3af;
+    color: #7d8590;
   }
 `;
 
 const SubmitButton = styled(motion.button)`
   width: 100%;
   padding: 1rem;
-  background: #2563eb;
-  color: white;
+  background: #ff8c00;
+  color: #000000;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -153,7 +160,7 @@ const SubmitButton = styled(motion.button)`
   gap: 0.5rem;
 
   &:hover {
-    background: #1d4ed8;
+    background: #ff9f33;
     transform: translateY(-2px);
   }
 
@@ -174,7 +181,18 @@ const SuccessMessage = styled(motion.div)`
   border: 1px solid #bbf7d0;
 `;
 
+const ErrorMessage = styled(motion.div)`
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 1rem;
+  border: 1px solid #fecaca;
+`;
+
 const Contact = () => {
+  const formRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -183,6 +201,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -191,37 +210,23 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setShowSuccess(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
-  };
+  // JS submission removed; using pure HTML form submit
 
   const contactInfo = [
     {
       icon: <FaEnvelope />,
       label: 'Email',
-      value: 'contact@example.com'
+      value: 'cl.kofisena@gmail.com'
     },
     {
       icon: <FaPhone />,
       label: 'Phone',
-      value: '+1 (555) 123-4567'
+      value: '+233 (559) 326-589'
     },
     {
       icon: <FaMapMarkerAlt />,
       label: 'Location',
-      value: 'San Francisco, CA'
+      value: 'Ghana, West Africa'
     }
   ];
 
@@ -235,7 +240,7 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            Get In Touch
+            get in touch
           </SectionTitle>
           
           <SectionSubtitle
@@ -273,7 +278,10 @@ const Contact = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          onSubmit={handleSubmit}
+          ref={formRef}
+          action="https://formspree.io/f/xeolpldq"
+          method="POST"
+          target="_self"
         >
           <FormGroup>
             <FormLabel htmlFor="name">Name</FormLabel>
@@ -324,6 +332,8 @@ const Contact = () => {
               placeholder="Tell me about your project..."
               required
             />
+          <input type="hidden" name="_subject" value="Portfolio Contact" />
+          <input type="text" name="_gotcha" style={{ display: 'none' }} />
           </FormGroup>
 
           <SubmitButton
@@ -344,6 +354,15 @@ const Contact = () => {
             >
               Thank you! Your message has been sent successfully.
             </SuccessMessage>
+          )}
+          {errorMessage && (
+            <ErrorMessage
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              {errorMessage}
+            </ErrorMessage>
           )}
         </ContactForm>
       </ContactContainer>
