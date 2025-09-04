@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
@@ -53,47 +53,40 @@ const SocialLink = styled.a`
 const Name = styled(motion.h1)`
   font-size: 3rem;
   font-weight: bold;
-  color: #ff8c00;
   margin: 2rem 0 1rem 0;
-  
+  color: #ff8c00;
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
 `;
 
-const Typewriter = styled.span`
-  position: relative;
-  &::after {
-    content: '_';
-    color: #ff8c00;
-    animation: blink 1s infinite;
-    margin-left: 4px;
-  }
-
+const Cursor = styled.span`
+  display: inline-block;
+  width: 0.6ch;
+  color: #ff8c00;
+  animation: blink 1s steps(1) infinite;
+  
   @keyframes blink {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
   }
 `;
 
-const Description = styled(motion.p)`
+const Prompt = styled.span`
+  color: #7d8590;
+  margin-right: 0.6rem;
+`;
+
+// removed
+
+// removed old description/role swap styles
+const Tagline = styled.p`
   font-size: 1.1rem;
   color: #7d8590;
   margin-bottom: 2rem;
 `;
 
-const CompanyInfo = styled(motion.p)`
-  margin-bottom: 3rem;
-  
-  a {
-    color: #ff8c00;
-    text-decoration: none;
-    
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
+// CompanyInfo removed
 
 const Section = styled(motion.section)`
   margin-bottom: 3rem;
@@ -272,7 +265,9 @@ const ContactText = styled.p`
 
 const Hero = () => {
   const [currentTime, setCurrentTime] = useState('');
-  const [typewriterText, setTypewriterText] = useState('');
+  // removed typewriter text state
+  const [typed, setTyped] = useState('');
+  const sequenceRef = useRef(null);
 
   useEffect(() => {
     const updateTime = () => {
@@ -294,36 +289,52 @@ const Hero = () => {
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
+  // Terminal-style typewriter on the main name line (with shell prompt)
   useEffect(() => {
-    const words = ['sena', 'data analyst', 'data engineer'];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
     let timeoutId;
+    let isCancelled = false;
 
-    const tick = () => {
-      const currentWord = words[wordIndex];
-      if (!isDeleting) {
-        setTypewriterText(currentWord.slice(0, charIndex + 1));
-        charIndex++;
-        if (charIndex === currentWord.length) {
-          isDeleting = true;
-          timeoutId = setTimeout(tick, 1200);
-          return;
-        }
-      } else {
-        setTypewriterText(currentWord.slice(0, charIndex - 1));
-        charIndex--;
-        if (charIndex === 0) {
-          isDeleting = false;
-          wordIndex = (wordIndex + 1) % words.length;
-        }
+    const sleep = (ms) => new Promise((res) => { timeoutId = setTimeout(res, ms); });
+
+    const type = async (text, speed = 90) => {
+      for (let i = 0; i < text.length; i += 1) {
+        if (isCancelled) return;
+        setTyped((prev) => prev + text[i]);
+        await sleep(speed);
       }
-      timeoutId = setTimeout(tick, isDeleting ? 60 : 100);
     };
 
-    tick();
-    return () => timeoutId && clearTimeout(timeoutId);
+    const backspace = async (count, speed = 60) => {
+      for (let i = 0; i < count; i += 1) {
+        if (isCancelled) return;
+        setTyped((prev) => prev.slice(0, -1));
+        await sleep(speed);
+      }
+    };
+
+    const run = async () => {
+      // "> Sena." → clear → "data analyst" → delete "analyst" → type "engineer" → repeat
+      setTyped('');
+      await type('Sena.');
+      await sleep(900);
+      await backspace(5, 50);
+      await sleep(400);
+      await type('data analyst');
+      await sleep(900);
+      await backspace('analyst'.length, 60); // leaves "data "
+      await sleep(200);
+      await type('engineer');
+      await sleep(1400);
+      if (!isCancelled) run();
+    };
+
+    sequenceRef.current = { cancel: () => { isCancelled = true; clearTimeout(timeoutId); } };
+    run();
+
+    return () => {
+      isCancelled = true;
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   return (
@@ -352,24 +363,15 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Typewriter>{typewriterText}</Typewriter>
+          <Prompt>&gt;</Prompt>{typed}
+          <Cursor>_</Cursor>
         </Name>
 
-        <Description
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-        Data is the new oil, i build the refinery.
-        </Description>
+        <Tagline>
+          data is the new oil, i build the refinery.
+        </Tagline>
 
-        <CompanyInfo
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          data engineer @ <a href="https://amalitech.com" target="_blank" rel="noopener noreferrer">amalitech.com</a>.
-        </CompanyInfo>
+        {/* Company line removed per request */}
 
         <Section
           initial={{ opacity: 0, y: 20 }}
